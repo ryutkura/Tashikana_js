@@ -23,10 +23,15 @@
         </div><!-- ./main-wrapper -->
         <footer>JavaScript Samples</footer>
         <script>
-            var answer = 'yes';
-            console.log(answer);
-            var answer = 'No';
-            console.log(answer);
+            var answer = window.prompt('ヘルプを見ますか？');
+            if(answer === 'yes'){
+                window.alert('タップでジャンプ、障害物をよけます');
+            } else if(answer === 'no'){
+                window.alert('ゲーム起動中');
+            }
+            else{
+                window.alert('yesかnoで答えてください。');
+            }
         </script>
     </body>
 </html>
