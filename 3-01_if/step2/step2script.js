@@ -25,15 +25,22 @@
 // }
 // console.log('モンスターを倒した！');
 // console.log(count);
-var price = 10000;
-var total = function(price){
-    var tax = 0.1;
-    return price + price * tax;
-}
-price =20000;
+// var price = 10000;
+// var total = function(price){
+//     var tax = 0.1;
+//     return price + price * tax;
+// }
+// price =20000;
 
-console.log('コーヒーメイカーの値段は'+total(price)+'円(税込)です。');
-document.getElementById('autoput').textContent= 'コーヒーメイカーの値段は'+total(80000)+'です。';
-document.getElementById('output2').textContent= 'コーヒーフィルタの値段は'+total(80000)+'です。';
-document.getElementById('output3').textContent= '豆の値段は'+total(200)+'です。';
+// console.log('コーヒーメイカーの値段は'+total(price)+'円(税込)です。');
+// document.getElementById('autoput').textContent= 'コーヒーメイカーの値段は'+total(80000)+'です。';
+// document.getElementById('output2').textContent= 'コーヒーフィルタの値段は'+total(80000)+'です。';
+// document.getElementById('output3').textContent= '豆の値段は'+total(200)+'です。';
 //↑getElementByIdの引数の変数名は任意に決められるっぽい
+var todo = ['デザインカンプ作成','データ整理','勉強会申し込み','牛乳を買う'];
+todo.push('パヤオパヤパヤ');
+for(var i=0;i<todo.length;i++){
+    var li = document.createElement('li');
+    li.textContent = todo[i];
+    document.getElementById('list').appendChild(li);
+}
