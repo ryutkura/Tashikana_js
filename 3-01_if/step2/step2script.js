@@ -8,6 +8,19 @@
 // }else{
 //     window.alert('お弁当はいかがでしょうか？');
 // }
-for(var i = 1;i <= 10; i++){
-    console.log(i + "枚");
+// for(var i = 1;i <= 10; i++){
+//     console.log(i + "枚");
+// }
+var enemy = 100;
+var attack;
+var count =0;
+
+window.alert('戦闘スタート！');
+while(enemy > 0){
+    attack = Math.floor(Math.random() * 30) + 1;
+    console.log('モンスターに'+attack+'のダメージ！');
+    enemy -=  attack;
+    count++;
 }
+console.log('モンスターを倒した！');
+console.log(count);
