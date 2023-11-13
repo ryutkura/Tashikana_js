@@ -18,11 +18,11 @@ img{
     float: left;
     width: 40px;
     height: 40px;
-    background: url(../Chapter5/5-04_image/img4.jpg) no-repeat;
+    background: url(arrow-left.svg) no-repeat;
 }
 #next{
     float: left;
     width: 40px;
     height: 40px;
-    background: url(../Chapter5/5-04_image/img2.jpg) no-repeat;
+    background: url(arrow-right.svg) no-repeat;
 }
