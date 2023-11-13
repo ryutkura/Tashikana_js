@@ -74,7 +74,8 @@ ch5imagescript.js:5 Uncaught TypeError: Cannot set properties of null (setting '
 
 もし問題が解決しない場合は、もう一度修正したJavaScriptのコードと、それを呼び出すHTMLのコードの該当部分を共有していただければ、より具体的な助言ができるかもしれません。
 ### 俺のタグの変更点
-```<img id="bigimg" src="../Chapter5/5-04_image/img1.jpg" alt="bigimg">
+```
+<img id="bigimg" src="../Chapter5/5-04_image/img1.jpg" alt="bigimg">
 ```
 
 ### 解決策(動いた)
@@ -96,3 +97,99 @@ document.addEventListener('DOMContentLoaded', function () {
 変更点は、`document.getElementById('bigimg')` の結果を変数 `bigImg` に格納しておくことです。これにより、毎回 `bigimg` を検索するのではなく、一度検索して結果を再利用できるようになります。
 
 また、エラーが発生した際にコンソールに表示される行数やスタックトレースを確認してみてください。エラーの行数が変更されていれば、それに合わせて修正を行ってください。
+### 結論
+参考書ではカスタムデータをhtml上で付与してjavascriptファイルでdatasetプロパティからアクセスしていたが、実行したプログラムではdatasetの読み込みがうまくいかずにエラーが出た。
+そこで今回はhtmlファイルにidを付与し、javascriptのファイルを変更しidを読めるようにした為実行できた。
+という解釈でいいでしょうか
+- ChatGPT
+- はい、おっしゃる通りです。エラーの原因は、JavaScriptがdocument.getElementById('bigimg')で要素を見つけることができなかったことでした。この問題を解決するために、id をHTML要素に追加し、JavaScriptでそのidを使用して要素を取得する方法を選択したことが正しいアプローチでした。
+
+参考書の例では、カスタムデータ属性を使用していましたが、実際のコードではDOM要素の特定の位置や構造が変更される可能性があり、それに対応する必要があります。今回の変更によって、より確実に要素を取得でき、エラーが解消されたことが確認されました。
+
+この経験を通じて、HTML要素に直接idを付与してJavaScriptからアクセスすることで、シンプルで確実な方法で問題を解決できることを学びましたね。お疲れ様でした。質問があればいつでもどうぞ。
+
+## カスタムデータについて
+`data-*` 属性は、HTML要素にカスタムデータを格納するための方法です。`data-image` のような属性は、その要素に関連するカスタムデータを提供するために使用されます。JavaScriptやCSSからこれらのデータにアクセスすることができます。
+
+例えば、以下のようなHTMLがあるとしましょう：
+
+```html
+<div id="myElement" data-image="example.jpg">This is a custom element with data.</div>
+```
+
+この例では、`data-image` 属性に `example.jpg` という値が格納されています。これをJavaScriptで取得するには以下のようにします：
+
+```javascript
+var myElement = document.getElementById('myElement');
+var imageData = myElement.dataset.image; // "example.jpg"
+```
+
+このようにして、`dataset` プロパティを使って `data-*` 属性の値にアクセスできます。JavaScript内でこれらのデータを利用することで、要素に関連する追加の情報を保持できます。
+
+あなたの元の質問に戻ると、`data-image` 属性はクリックされたサムネイルに関連する大きな画像のファイル名を格納しています。JavaScriptはこの属性の値を取得し、それに基づいて大きな画像を表示していると考えられます。
+
+カスタムデータ（Custom Data）は、HTML要素にユーザーが定義したデータを関連付けるための手段です。このデータは通常、`data-*` 属性を使用して要素に埋め込まれます。これにより、JavaScriptやCSSなどのコードから、その要素に関する追加情報を利用できるようになります。
+
+例えば、以下のようなHTMLがあります：
+
+```html
+<div data-id="123" data-category="fruit" data-price="2.50">Apple</div>
+```
+
+この例では、`data-id`、`data-category`、`data-price` の3つのカスタムデータ属性があります。これらはそれぞれ、この `<div>` 要素に関連するアプリケーションやスクリプトにとって有用な情報を含んでいます。この情報はJavaScriptで以下のように取得できます：
+
+```javascript
+var element = document.querySelector('div');
+var id = element.dataset.id; // "123"
+var category = element.dataset.category; // "fruit"
+var price = element.dataset.price; // "2.50"
+```
+
+これにより、JavaScriptはHTMLから取得したデータを利用して、動的にコンテンツを生成するなどの操作を行うことができます。
+
+カスタムデータの使用は、HTML要素に追加の情報を埋め込む必要があり、これによってコードがより柔軟で拡張可能になります。特に動的なウェブページやアプリケーションの開発では、このようなアプローチが有用です。
+
+なお`data-*`の`*`には任意の文字列が入り、ユーザーが自由に定義できるカスタムデータ属性である。この`*`には何でも指定できる。
+
+つまり前述していた`data-image="example.jpg"`もファイル名を指しているのではなく、単なる文字列の値である。
+
+## datasetプロパティについて
+`dataset` プロパティは、HTML要素の `data-*` 属性にアクセスするためのJavaScriptのプロパティです。このプロパティは、要素が持つ全ての `data-*` 属性をオブジェクトとして提供します。このオブジェクトは、各 `data-*` 属性の名前をキーとし、それに対応する値を格納しています。
+
+以下に、`dataset` プロパティの基本的な使い方と例を示します。
+
+### 基本的な使い方
+
+```html
+<div id="myElement" data-name="John" data-age="25" data-city="New York">User Info</div>
+```
+
+```javascript
+var element = document.getElementById('myElement');
+
+// datasetプロパティを使用してdata-*属性にアクセス
+var name = element.dataset.name; // "John"
+var age = element.dataset.age;   // "25"
+var city = element.dataset.city; // "New York"
+```
+
+### 注意事項
+
+- `data-*` 属性の名前がキャメルケースに変換されます。例えば、`data-first-name` は `dataset.firstName` としてアクセスされます。
+- `dataset` プロパティは文字列として値を返します。必要に応じて、数値や他の型に変換する必要があります。
+
+```html
+<div id="myElement" data-count="42">Count</div>
+```
+
+```javascript
+var element = document.getElementById('myElement');
+
+// datasetプロパティは文字列として値を返す
+var countString = element.dataset.count; // "42"
+
+// 数値に変換する例
+var count = parseInt(element.dataset.count, 10); // 42 (数値として変換)
+```
+
+`dataset` プロパティは、HTML要素が持つ `data-*` 属性の取得や設定に非常に便利な方法を提供しています。
