@@ -45,8 +45,12 @@ else if(lang === 'en'){
 else if(lang === 'zh'){
     opt = document.querySelector('option[value="index-zh.html"]');
 }
-opt.selected = true;
+if(opt){
+    opt.selected = true;
+}
+// opt.selected = true;
 
 document.getElementById('form').select.onchange = function(){
-    location.href = document.getElementById('form').select.value;
+    // location.href = document.getElementById('form').select.value;
+    location.href = this.value;
 }
